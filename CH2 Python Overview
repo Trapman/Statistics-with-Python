@@ -1,0 +1,30 @@
+# Quick Review ######################
+
+# basic program ###################
+# this program will square the numbers in the given range
+def squared(x):
+    return x**2
+
+for num in range(6):
+    print  (num, squared(num))
+print('Done!')
+############################################################
+
+# python data types ####################
+
+# tuple() : immutable
+import numpy as np
+myTuple = ('abc', np.arange(0, 3, 0.2), 2.5)
+myTuple[2] # returns 2.5
+
+# list[] : mutable 
+myList = ['abc', 'def', 'ghij']
+myList.append('klm')
+
+myList2 = [1,2,3]
+myList3 = [4,5,6]
+myList2 + myList3
+
+# dict{} : unordered collections, mutable
+myDict{'David':'Mega', 'Brad':'KPMG', 'Dan':'Comas'}
+myDict.keys() # returns all keys
