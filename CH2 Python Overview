@@ -28,3 +28,5 @@ myList2 + myList3
 # dict{} : unordered collections, mutable
 myDict{'David':'Mega', 'Brad':'KPMG', 'Dan':'Comas'}
 myDict.keys() # returns all keys
+
+#dont spend too much time here
