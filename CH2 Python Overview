@@ -30,3 +30,5 @@ myDict{'David':'Mega', 'Brad':'KPMG', 'Dan':'Comas'}
 myDict.keys() # returns all keys
 
 #dont spend too much time here
+
+# fix dict stuff
