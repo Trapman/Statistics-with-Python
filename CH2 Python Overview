@@ -29,8 +29,68 @@ myList2 + myList3
 myDict{'David':'Mega', 'Brad':'KPMG', 'Dan':'Comas'}
 myDict.keys() # returns all keys
 
-#dont spend too much time here
+# Indexing and Slicing #########################################
+# these are the rules for addressing invidual elements in lists, tuples or in numpy arrays
 
-# fix dict stuff 
+a[start:end]  # items start through end-1
+a[start:]     # items start through the rest of the arrray
+a[:end]       # items from the beginning through end-1
+a[:]          # everything
 
-#maybe build actual scripts 
+a[start:stop:step]  # if you want to include a step
+
+a[-1]        # last item
+a[-2:]       # last two items
+a[:-2]       # everything but last two items
+
+# Vectors and Arrays ##########################################
+import numpy as np # by default this produces vectors
+
+# commands most frequently used to generate numbers
+# (1) np.zeros        generates zeros. Specify (rows, columns) if you want a matrix of 0s
+
+import numpy as np
+
+np.zeros(3)
+# Out[1]: array([0., 0., 0.])
+
+import numpy as np
+
+np.zeros((2,3))
+# Out[2]: array([[0., 0., 0.],
+#                [0., 0., 0.]])
+
+# (2) np.ones       generates ones, same idea as above
+
+# (3) np.random.randn   generates normally distributed numbers with a mean of 0 and std of 1
+
+# (4) np.arange        generates a range of numbers. Parameters can be start, end, step
+import numpy as np
+np.arange(3)
+# Out[5]: array([0, 1, 2])
+
+import numpy as np
+np.arange(1,4,0.5)
+# Out[6]: array([1. , 1.5, 2. , 2.5, 3. , 3.5])
+
+# (5) np.linspace     generates linearly spaced numbers
+import numpy as np
+np.linspace(0,10,6)
+# Out[8]: array([ 0.,  2.,  4.,  6.,  8., 10.])
+
+# Pandas: Data Structures for Statistics ############################
+# data handling
+# to handle labeled data in python, pandas uses DataFrame objects
+# a DataFrame is a two-dimensional labeled data structure with columns of potentially different types
+# somewhat similar to a SQL table or a spreadsheet
+# DataFrames are the most commondly used pandas object
+
+# ex: create a DataFrame with 3 columns, labeled 'Time', 'x', and 'y'
+import numpy as np
+import pandas as pd
+
+t = np.arange(0, 10, 0.1)
+x = np.sin(t)
+y = np.cos(t)
+
+df = pd.DataFrame({'Time': t, 'x': x, 'y': y})
