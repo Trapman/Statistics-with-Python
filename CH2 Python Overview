@@ -50,12 +50,10 @@ import numpy as np # by default this produces vectors
 # (1) np.zeros        generates zeros. Specify (rows, columns) if you want a matrix of 0s
 
 import numpy as np
-
 np.zeros(3)
 # Out[1]: array([0., 0., 0.])
 
 import numpy as np
-
 np.zeros((2,3))
 # Out[2]: array([[0., 0., 0.],
 #                [0., 0., 0.]])
