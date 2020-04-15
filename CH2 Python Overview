@@ -92,3 +92,19 @@ x = np.sin(t)
 y = np.cos(t)
 
 df = pd.DataFrame({'Time': t, 'x': x, 'y': y})
+
+# sample program
+
+# import standard packages
+import numpy as np
+import matplotlib.pyplot as plt
+
+# generate the time-values
+t = np.r_[0:10:0.1]
+
+# set the frequency and calculate the sine-value
+freq = 0.5
+x = np.sin(2*np.pi*freq*t)
+
+# plot the data
+
