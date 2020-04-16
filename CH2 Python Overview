@@ -108,3 +108,4 @@ x = np.sin(2*np.pi*freq*t)
 
 # plot the data
 
+#finish this and maybe add Jupiter install
