@@ -50,10 +50,12 @@ import numpy as np # by default this produces vectors
 # (1) np.zeros        generates zeros. Specify (rows, columns) if you want a matrix of 0s
 
 import numpy as np
+
 np.zeros(3)
 # Out[1]: array([0., 0., 0.])
 
 import numpy as np
+
 np.zeros((2,3))
 # Out[2]: array([[0., 0., 0.],
 #                [0., 0., 0.]])
@@ -76,23 +78,6 @@ import numpy as np
 np.linspace(0,10,6)
 # Out[8]: array([ 0.,  2.,  4.,  6.,  8., 10.])
 
-# Pandas: Data Structures for Statistics ############################
-# data handling
-# to handle labeled data in python, pandas uses DataFrame objects
-# a DataFrame is a two-dimensional labeled data structure with columns of potentially different types
-# somewhat similar to a SQL table or a spreadsheet
-# DataFrames are the most commondly used pandas object
-
-# ex: create a DataFrame with 3 columns, labeled 'Time', 'x', and 'y'
-import numpy as np
-import pandas as pd
-
-t = np.arange(0, 10, 0.1)
-x = np.sin(t)
-y = np.cos(t)
-
-df = pd.DataFrame({'Time': t, 'x': x, 'y': y})
-
 # sample program
 
 # import standard packages
@@ -107,5 +92,81 @@ freq = 0.5
 x = np.sin(2*np.pi*freq*t)
 
 # plot the data
+plt.plot(t, x)
 
-#finish this and maybe add Jupiter install
+# format the plot
+plt.xlabel('Time[sec]')
+plt.ylabel('Values')
+
+# generate a figure, one directory up
+#plt.savefig(r'...\Sinewave.png', dpi = 200)
+
+# put in on the screen
+plt.show()
+
+# Functions, Modules, Packages ########################
+# functions example: save it as pythonFunction.py
+
+import numpy as np
+
+def incomeAndExpenses(data):
+    '''find the sum of the positve numbers, and the sum of the negative ones'''
+    income = np.sum(data[data>0])
+    expenses = np.sum(data[data<0])
+    
+    return (income, expenses)
+
+if __name__=='__main__':
+    testData = np.array([-5, 12, 3, -6, -4, 8])
+    
+    if testData[0]<0:
+        print('Your first transaction was a loss, and will be dropped')
+        testData = np.delete(testData, 0)
+    else:
+        print('Congrats!: your first transaction was a gain!')
+        
+    (myIncome, myExpenses) = incomeAndExpenses(testData)
+    print('You have earned {0:5.2f} EUR, and spent {1:5.2f} EUR'.format(myIncome, -myExpenses))
+    
+# Modules ############################################################
+# to run the above module in an IDE: %run
+%run pythonFunction
+
+# to run in command line: just type it out 
+pythonfunction.py
+
+# using a function or variable that's defined in a different module: need to import
+import newModule   # access it with newModule.newFunction()
+from newModule import newFunction # accesss is directly as newFunction()
+from newModule import *    # imports everything, so not recommended
+
+# Pandas ############################################################
+# usually handle data frames, which are basically excel spreadsheets/SQL tables
+
+# ex: create a DataFrame with 3 columns, labeled 'Time', 'x', and 'y'
+import numpy as np
+import pandas as pd
+
+t = np.arange(0, 10, 0.1)
+x = np.sin(t)
+y = np.cos(t)
+
+df = pd.DataFrame({'Time': t, 'x': x, 'y': y})
+
+# in pandas, rows are addressed through indices and columns through their names
+# to address the first column you only have two options: df.Time OR df['Time']
+
+# to extract two columns at the same time:
+data = df[['Time', 'y']]
+
+data.head()  # to display the first row
+data.tail()  # to display the last row
+
+data[4:10]   # to extract the six rows from 5 to 10
+
+df[['Time', 'y']][4:10] # to handle rows and columns simultaneously
+
+df.iloc[4:10, [0,2]]   # iloc is the standard method of row/column notation
+
+data.values    # returns a numpy array
+
