@@ -170,3 +170,5 @@ df.iloc[4:10, [0,2]]   # iloc is the standard method of row/column notation
 
 data.values    # returns a numpy array
 
+
+# finish this
