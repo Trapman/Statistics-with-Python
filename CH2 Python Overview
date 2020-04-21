@@ -170,5 +170,36 @@ df.iloc[4:10, [0,2]]   # iloc is the standard method of row/column notation
 
 data.values    # returns a numpy array
 
+# quick tip:
+# numpy handles ROWS first: e.g. data[0] is the first row of an array
+# pandas handles COLUMNS first: e.g. df['values'][0] is the first element of the column 'values'
 
-# finish this
+# Grouping
+# allows you to do complex data manipulation like pivoting and efficiently group objects
+
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame({
+        'Gender': ['f', 'f', 'm', 'f', 'm',
+                   'm', 'f', 'm', 'f', 'm', 'm'],
+        'TV': [3.4, 3.5, 2.6, 4.7, 4.1, 4.1,
+               5.1, 3.9, 3.7, 2.1, 4.3]
+        })
+    
+# group the data
+grouped = data.groupby('Gender')
+
+# do some overview stats
+print(grouped.describe())
+
+# plot the data
+grouped.boxplot()
+plt.show()
+
+# get the groups as DataFrames
+df_female = grouped.get_group('f')
+
+# get the corresponding numpy-array
+values_female = grouped.get_group('f').values
+
