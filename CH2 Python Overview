@@ -203,3 +203,4 @@ df_female = grouped.get_group('f')
 # get the corresponding numpy-array
 values_female = grouped.get_group('f').values
 
+finish this
