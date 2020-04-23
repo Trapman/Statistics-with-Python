@@ -203,4 +203,36 @@ df_female = grouped.get_group('f')
 # get the corresponding numpy-array
 values_female = grouped.get_group('f').values
 
+# Statsmodes: Tools for Statistical Modeling ######################
+# module provides much of the same functionality as R
+
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as sm
+
+# generate a noisy line, and save the data in a pandas-DataFrame
+x = np.arange(100)
+y = 0.5*x - 20 + np.random.randn(len(x))
+df = pd.DataFrame({'x':x, 'y':y})
+
+# fit a linear model, using the 'formula' language
+# added by the package 'patsy'
+model = sm.ols('y~x', data=df).fit()
+print(model.summary())
+
+# Seaborn ###########################################################
+# for data visualization, based on matplotlib
+# example: regression plot with data, best-fit line, and confidence intervals for the fit
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+x = np.linspace(1, 7, 50)
+y = 3 + 2*x + 1.5*np.random.randn(len(x))
+df = pd.DataFrame({'xData':x, 'yData':y})
+sns.regplot('xData', 'yData', data=df)
+plt.show
+
+# Exercises ##################################
 
