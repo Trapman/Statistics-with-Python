@@ -1,0 +1,4 @@
+# (3.1) Input from Text Files
+# (3.1.1) Visual Inspection: check for things like is there a header/footer? Are there empy lines at the end of the file? Are there whitespaces before the first number or at the end of each line?
+
+# (3.1.2) Reading ASCII-Data into Python
