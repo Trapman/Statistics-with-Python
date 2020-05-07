@@ -25,4 +25,13 @@ df = pd.read_csv('data.txt', header=None)   # note you usually need to include t
 # use skipfooter
 df2 = pd.read_csv('data2.txt',
                   skipfooter=3, delimiter='[ ,]*')
+                  
+# Regex
+df =pd.read_csv(inFile, sep='[ ;,]+')
+# this reads in data from a file, seperated by a combo of commas, semicolons, or whitespaces
+data=np.round(np.random.randin(100,7), 2)
+df = pd.DataFrame(data, columns= ['Time',
+                                  'PosX', 'PosY', 'PosZ', 'VelX', 'VelY', 'VelZ'])
+vel = df.filter(regex='Vel*')
+#extracts columns starting with 'Vel'
 
