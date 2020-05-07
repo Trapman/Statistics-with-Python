@@ -3,5 +3,26 @@
 
 # (3.1.2) Reading ASCII-Data into Python
 
-Map out all the remaining types 
+# simple text files ('data.txt')
+# data.txt is something like this:
+# 1, 1.3, 0.6
+# 2, 2.1, 0.7
+# 3, 4.8, 0.8
+# 4, 3.3, 0.9
+data = np.loadtxt('data.txt', delimiter = ',')
+# or
+df = pd.read_csv('data.txt', header=None)   # note you usually need to include this header part
+
+# more complex text files
+# data2.txt is something like this:
+# patient_id, weight, value
+# 1, 1.3, 0.6
+# 2, 2.1, 0.7
+# 3, 4.8, 0.8
+# 4, 3.3, 0.9
+# these are dummy files blah blah
+# April 2020
+# use skipfooter
+df2 = pd.read_csv('data2.txt',
+                  skipfooter=3, delimiter='[ ,]*')
 
