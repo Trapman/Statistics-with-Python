@@ -35,3 +35,55 @@ df = pd.DataFrame(data, columns= ['Time',
 vel = df.filter(regex='Vel*')
 #extracts columns starting with 'Vel'
 
+# MS Excel: two functions here, read_excel (Pandas) or ExcelFile (Class)
+# read_excel: for reading one file with file-specific arguments (i.e. identical formats across each sheet)
+# ExcelFile: for reading one file with sheet-specific arguments(i.e. different formats across sheets)
+
+# ex1: reading a single sheet
+# using ExcelFile class
+xls = pd.ExcelFile('path_to_file.xls')
+data = xls.parse('Sheet1', index_col=None, na_values=['NA'])
+
+# using read_excel function
+data = pd.read_excel('path_to_file.xls', 'Sheet1',
+                     index_col = None, na_values = ['NA'])
+
+# advanced script to directly import data from an Excel file which is stored in a zipped archive on the web
+
+# import standard packages
+import pandas as pd
+
+# import additional packages
+import io
+import zipfile
+
+def getDataDobson(url, inFile):
+    '''extracts data from a zipped archive on the web'''
+    
+    #get the zip-archive
+    GLM_archive = urlopen(url).read()
+    
+    #make the archive available as a byte-stream
+    zipdata = io.BytesIO()
+    zipdata.write(GLM_archive)
+    
+    #extract the file from the archive, as a pandas XLS-file
+    myzipfile = zipfile.ZipFile(zipdata)
+    xlsfile = myzipfile.open(inFile)
+    
+    #read the xls-file into Python, using Pandas, and return extracted data
+    xls  = pd.ExcelFile(xlsfile)
+    df = xls.parse('Sheet1', skiprows=2)
+    
+    return df
+
+if __name__=='__main__':
+    #select archive(on the web) and the file in the archive
+    url = 'http://cdn.crcpress.com/downloads/C9500/GLM_data.zip'
+    inFile = r'GLM_data/Table 2.8 Wasit loss.xls'
+    
+    df = getDataDobson(url, inFile)
+    print(df)
+    
+    input('All done!')
+
