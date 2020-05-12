@@ -1,0 +1,22 @@
+# Pyplot
+# Matlab-like style
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate the data
+x = np.arange(0, 10, 0.2)
+y = np.sin(x)
+
+# Generate the plot
+plt.plot(x, y)
+
+# display it on screen
+plt.show()
+
+#pythonic style
+# just change the 'generate the plot' part to this:
+# generate the plot
+fig = plt.figure()   #generates the figure
+ax = fig.add_subplot(111)  # add an axis to that figure
+ax.plot(x,y)          # add a plot to that axis
+
