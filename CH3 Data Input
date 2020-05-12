@@ -87,5 +87,17 @@ if __name__=='__main__':
     
     input('All done!')
 
-# add spyder doc
+# Matlab ###############################################
+# support is built into scipy
+# matlab data is in 'data.mat' format
+# the following will return string, number, vector, and matrix variables from 'data.mat'
+from scipy.io import loadmat
+data = loadmat('data.mat')
+
+number = data['number'][0,0]
+text = data['text'][0]
+vector = data['vector'][0]
+matrix = data['matrix]
+struct_values = data['structure'][0,0][0][0]
+strunct_string = data['structure'] [0,0][1][0]
 
