@@ -20,3 +20,107 @@ fig = plt.figure()   #generates the figure
 ax = fig.add_subplot(111)  # add an axis to that figure
 ax.plot(x,y)          # add a plot to that axis
 
+# for interactive data analysis, load the common commands from numpy and matplotlib, using pylab
+from pylab import *
+x = arange(0, 10, 0.2)
+y = sin(x)
+plot(x, y)
+show()
+
+# another example ###########################
+# import the required packages
+import matplotlib.pyplot as plt
+import numpy as np
+
+# generate the data
+x = np.arange(0, 10, 0.2)
+y = np.sin(x)
+z = np.cos(x)
+
+# generate the figure and the axes
+fig, axs = plt.subplots(nrows=2, ncols=1)
+
+# on the first axis, plot the sine and label the coordinate
+axs[0].plot(x, y)
+axs[0].set_ylabel('Sine')
+
+# on the second axis, plot the cosine
+axs[1].plot(x, z)
+axs[1].set_ylabel('Cosine')
+
+# display the resulting plot
+plt.show()
+
+# 4.2 Interactive Plots ############################
+'''matplotlib provides different ways to interact with the user, but it's not straightforward.
+these examples help bypass most of these problems:
+    1. exactly position figures on screen
+    2. pause between two plots, and proceed automatically after a few seconds
+    3. proceed on a click/keyboard hit
+    4. evaluate keyboad entries'''
+    
+# import standard packages
+import numpy as np
+import matplotlib.pyplot as plt
+
+# additional packages 
+try:
+    import tkinter as tk
+except ImportError:      #different capitalization in Python
+    2.x
+    import Tkinter as tk
+    
+t = np.arange(0, 10, 0.1)
+c = np.cos(t)
+s = np.sin(t)
+
+def normalPlot():
+    '''just show a plot. Program stops and only continues when the plot is closed,
+    either by hitting "Window Close" button or typing "ALT+F4" '''
+    
+    plt.plot(t, s)
+    plt.title('Normal plot')
+    plt.show()
+    
+def positionOnScreen():
+    '''position two plots on your screen. This uses the Tickle-backend'''
+    
+    # Get screen size
+    root = tk.Tk()
+    (screen_w, screen_h) = (root.winfo_screenwidth(), root.winfo_screenheight())
+    root.destroy()
+    
+    def positionFigure(figure, geometry):
+        '''position one figure on a given location on the screen. This works
+        with Tk and for Qt5 backends'''
+        
+        mgr = figure.canvas.manager
+        (pos_x, pos_y, width, height) = geometry
+        try:
+            #position commands for Tk
+            position = '{0}x{1}+{2}+{3}'.format(width, height, pos_x, pos_y)
+            mgr.window.geometry(position)
+        except TypeError:
+            # positioning commands for Qt5
+            mgr.window.setGeometry(pos_x, pos_y, width, height)
+            
+    # the program continues after the first plot
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(t, c)
+    ax.set_title('Top Left: Close this one last')
+    
+    # position the first graph in the top right half
+    topLeft = ( 0, 0, screen_w//2, screen_h//2)
+    positionFigure(fig, topLeft)
+    
+    # put another graph in the top right half
+    fig2 = plt.figure()
+    ax2 = fig2.add_subplot(111)
+    ax2.plot(t, s)
+    ax2.set_title('Top Right: Close this one first')
+    
+    topRight = (screen_w//2, 0, screen_w//2, screen_h//2)
+    positionFigure(fig2, topRight)
+    
+    plt.show()
