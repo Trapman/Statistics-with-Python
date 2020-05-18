@@ -124,3 +124,57 @@ def positionOnScreen():
     positionFigure(fig2, topRight)
     
     plt.show()
+    
+ def showAndPause():
+    '''show a plot only for 2 seconds, and then proceed automatically'''
+    plt.plot(t, s)
+    plt.title("Don't touch! I will proceed automatically.")
+    
+    plt.show(block = False)
+    duration = 2     # [sec]
+    plt.pause(duration)
+    plt.close()
+    
+def waitForInput():
+    '''This time, proceed with a click or by hitting any key''' 
+    plt.plot(t, c)
+    plt.title('Click in that window, or hit any key to continue')
+    
+    plt.waitforbuttonpress()
+    plt.close()
+    
+def keySelection():
+    '''Wait for user input, and proceed depending on the key entered.'''
+    fig, ax = plt.subplots()
+    fig.canvas.mpl_connect('key_press_event', on_key_event)
+    
+    # disable defauly Matplotlib shortcut keys:
+    keymaps = [param for param in plt.rcParams if param.find('keymap') >= 0]
+    for key in keymaps:
+        plt.rcParams[key] = ''
+        
+    ax.plot(t, c)
+    ax.set_title('First, enter a vowel: ')
+    plt.show()
+    
+def on_key_event(event):
+    '''keyboard interaction'''
+    
+    # print('you pressed %s'%event.key)
+    key = event.key
+    
+    curAxis = plt.gca()
+    if key in 'aeiou':
+        curAxis.set_title('Well done!')
+        plt.pause(1)
+        plt.close()
+    else:
+        curAxis.set_title(key + ' is not a vowel: try again to find a vowel ....')
+        plt.draw()
+        
+if __name__ == '__main__':
+    normalPlot()
+    positionOnScreen()
+    showAndPause()
+    waitForInput()
+    keySelection()
