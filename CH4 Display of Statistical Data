@@ -178,6 +178,6 @@ if __name__ == '__main__':
     showAndPause()
     waitForInput()
     keySelection()
-#work out bugs
-# see it this actually runs 
+# work out bugs, this didn't work last time
+
 
