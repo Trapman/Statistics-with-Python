@@ -27,7 +27,7 @@ y = sin(x)
 plot(x, y)
 show()
 
-# another example ###########################
+# another example #############################
 # import the required packages
 import matplotlib.pyplot as plt
 import numpy as np
